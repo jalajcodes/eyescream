@@ -3,6 +3,7 @@ const router = express.Router();
 const { catchErrors } = require('../handlers/errorHandlers');
 
 const storeController = require('../controllers/storeController');
+const userController = require('../controllers/userController');
 
 // Do work here
 router.get('/', catchErrors(storeController.getStores));
@@ -25,6 +26,11 @@ router.get('/store/:slug', catchErrors(storeController.getStoreBySlug));
 
 router.get('/tags', catchErrors(storeController.getStoresByTag));
 router.get('/tags/:tag', catchErrors(storeController.getStoresByTag));
+
+router.get('/login', catchErrors(userController.loginForm));
+router.get('/register', userController.registerForm);
+
+router.post('/register', userController.validateRegister);
 
 module.exports = router;
 
